@@ -7,7 +7,9 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                mavenVersion()
+                def configText = libraryResource 'com/test/env.yml'
+                def config = readYaml configText
+                mavenVersion(config)
             }
         }
     }
